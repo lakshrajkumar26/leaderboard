@@ -10,7 +10,7 @@ app.use(express.json());
 app.get("/health", (req,res)=>{
     res.send("server is healthy");
 })
-app.use("/api/users",userRouter);
+app.use("/api",userRouter);
 app.use("/api",claimRouter);
 
 app.listen(port, ()=>{

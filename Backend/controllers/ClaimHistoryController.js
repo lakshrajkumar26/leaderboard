@@ -7,7 +7,7 @@ const claimPoints = async (req,res) => {
         const {userId} = req.params;   // takeout userId from params
 
         const user = await users.findById(userId);   //instance created   
-         if(!user) return res.status(404).json({message : "User not found"});   //if user not found
+         if(!user) return res.status(404).json({message : "Username required"});   //if user not found
 
          //to genberate random number
          const randomPoints = Math.floor(Math.random()*10)+1;
@@ -17,6 +17,7 @@ const claimPoints = async (req,res) => {
       //till now a>search userId b>called user c>gen random 1-10 d>added into user's totalPoints e>save the instance f>now create entry
         await claimHistory.create({
             userId: user._id,
+            userName :user.name,
             pointsClaimed : randomPoints
         })
       
@@ -28,5 +29,6 @@ const claimPoints = async (req,res) => {
         res.status(500).json({message : "server error",err})
       }
 }
+
 
 module.exports = {claimPoints};

@@ -9,7 +9,7 @@ const ClaimHistorySchema = new mongoose.Schema({
     },
     userName : {
         type : String,
-        require : true,
+        required : true,
     },
     pointsClaimed : {
         type : Number,
