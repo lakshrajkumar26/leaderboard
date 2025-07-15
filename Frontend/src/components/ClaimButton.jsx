@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from "axios";
+import './ClaimButton.css'
 
 const ClaimButton = ({ selectedUser, onClaim }) => {
   const [lastClaim, setLastClaim] = useState(null);
@@ -17,8 +18,8 @@ const ClaimButton = ({ selectedUser, onClaim }) => {
   };
 
   return (
-    <div>
-      <h3> Claim Points</h3>
+       <div className="claim-button-wrapper">
+      <h3>Claim Points</h3>
       <button onClick={handleClaim}>Claim Points</button>
 
       {lastClaim && (

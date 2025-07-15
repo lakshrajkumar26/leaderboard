@@ -14,11 +14,13 @@ function App() {
 
   return (
   <>
+  <div className="container">
   <Homepage/>
   <UserSelect selectedUser={selectedUser} setSelectedUser={setSelectedUser}/>
   <ClaimButton selectedUser={selectedUser} onClaim={()=> setClaimTrigger( prev => !prev)}/>
   <Leaderboard/>
   <ClaimHistory selectedUser={selectedUser} claimTrigger={claimTrigger} />
+  </div>
   </>
   )
 }

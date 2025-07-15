@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './ClaimHistory.css';
 
-const ClaimHistory = ({ selectedUser , claimTrigger}) => {
+const ClaimHistory = ({ selectedUser, claimTrigger }) => {
   const [history, setHistory] = useState([]);
-  const [page, setPage] = useState(1);               // current page
-  const [totalPages, setTotalPages] = useState(1);   // total pages from backend
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     if (!selectedUser) return;
 
     const fetchPaginatedHistory = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/history/${selectedUser}?page=${page}&limit=5`);
+        const res = await axios.get(
+          `http://localhost:3000/api/history/${selectedUser}?page=${page}&limit=5`
+        );
         setHistory(res.data.history);
         setTotalPages(res.data.totalPages);
       } catch (err) {
-        console.error("Pagination fetch error:", err);
+        console.error('Pagination fetch error:', err);
       }
     };
 
@@ -23,39 +26,41 @@ const ClaimHistory = ({ selectedUser , claimTrigger}) => {
   }, [selectedUser, page, claimTrigger]);
 
   const handlePrev = () => {
-    if (page > 1) setPage(page - 1);
+    if (page > 1) setPage((prev) => prev - 1);
   };
 
   const handleNext = () => {
-    if (page < totalPages) setPage(page + 1);
+    if (page < totalPages) setPage((prev) => prev + 1);
   };
 
   return (
-    <div>
-      <h3> Claim History</h3>
+    <div className="history-wrapper">
+      <h2 className="history-title">🧾 Claim History</h2>
+
       {!selectedUser ? (
-        <p>Please select a user to view history.</p>
+        <p className="history-empty">Please select a user to view history.</p>
       ) : history.length === 0 ? (
-        <p>No history found for this user.</p>
+        <p className="history-empty">No history found for this user.</p>
       ) : (
         <>
-          <ul>
+          <ul className="history-list">
             {history.map((item) => (
-              <li key={item._id}>
-                {item.userName} claimed <strong>{item.pointsClaimed}</strong> points — Total after claim: <strong>{item.totalPoints}</strong>
+              <li key={item._id} className="history-card">
+                <div className="card-header">
+                  <span className="username">{item.userName}</span>
+                  <span className="points">+{item.pointsClaimed}</span>
+                </div>
+                <div className="card-footer">
+                  Total: <span className="total">{item.totalPoints}</span>
+                </div>
               </li>
             ))}
           </ul>
-          <div style={{ marginTop: 10 }}>
-            <button onClick={handlePrev} disabled={page === 1}>
-              Prev
-            </button>
-            <span style={{ margin: '0 10px' }}>
-              Page {page} of {totalPages}
-            </span>
-            <button onClick={handleNext} disabled={page === totalPages}>
-              Next
-            </button>
+
+          <div className="pagination">
+            <button onClick={handlePrev} disabled={page === 1}>◀ Prev</button>
+            <span>Page {page} of {totalPages}</span>
+            <button onClick={handleNext} disabled={page === totalPages}>Next ▶</button>
           </div>
         </>
       )}

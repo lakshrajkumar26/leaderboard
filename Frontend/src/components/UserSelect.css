@@ -1,0 +1,63 @@
+.user-select-container {
+  max-width: 600px;
+  margin: 30px auto;
+  background-color: #1e293b;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  color: white;
+  text-align: center;
+}
+
+.title {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  color: #facc15;
+}
+
+.user-dropdown {
+  width: 80%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background-color: #374151;
+  color: white;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.add-user-section {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.add-user-section input {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  width: 60%;
+  background-color: #334155;
+  color: white;
+  font-size: 0.95rem;
+}
+
+.add-user-section input::placeholder {
+  color: #9ca3af;
+}
+
+.add-user-section button {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  background-color: #10b981;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.add-user-section button:hover {
+  background-color: #059669;
+}

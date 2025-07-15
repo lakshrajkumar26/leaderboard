@@ -1,0 +1,42 @@
+.claim-button-wrapper {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 24px;
+  background-color: #1e293b; /* slate-800 */
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  color: white;
+}
+
+.claim-button-wrapper h3 {
+  font-size: 1.6rem;
+  margin-bottom: 16px;
+  color: #facc15; /* yellow-400 */
+}
+
+.claim-button-wrapper button {
+  background-color: #10b981; /* emerald-500 */
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.claim-button-wrapper button:hover {
+  background-color: #059669; /* emerald-600 */
+}
+
+.claim-button-wrapper p {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #d1fae5; /* emerald-100 */
+}
+
+.claim-button-wrapper strong {
+  color: #34d399; /* emerald-400 */
+}

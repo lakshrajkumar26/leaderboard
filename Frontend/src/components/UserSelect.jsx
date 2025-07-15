@@ -1,67 +1,72 @@
-import React from 'react'
-import { useEffect } from 'react';
-import { useState } from 'react'
-import axios from "axios";
-const UserSelect = ({selectedUser, setSelectedUser}) => {  //passed these two to parent App.jsx and then to child  ClaimButton.jsx
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import './UserSelect.css'; // Import the CSS
 
-    const [users, setUsers] = useState([]);
-    // const [selectedUser, setSelectedUser] = useState("")
-    const [newUser ,setNewUser] = useState("");
+const UserSelect = ({ selectedUser, setSelectedUser }) => {
+  const [users, setUsers] = useState([]);
+  const [newUser, setNewUser] = useState('');
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get("http://localhost:3000/api/users");
-                console.log(response.data.Allusers);
-                setUsers(response.data.Allusers);
-                // console.log(selectedUser)
-            }
-            catch (err) {
-                console.log(err);
-            }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/api/users');
+        setUsers(response.data.Allusers);
+      } catch (err) {
+        console.error('Fetch users error:', err);
+      }
+    };
 
-        }
-        fetchData();
-    }, [])
+    fetchData();
+  }, []);
 
-    const handleAddUser = async() => {
-        if(!newUser.trim()) return console.log("please add valid user");
-        try{
-            const res = await axios.post("http://localhost:3000/api/create",{name : newUser,
-            totalPoints : 0,
-            });
+  const handleAddUser = async () => {
+    if (!newUser.trim()) return alert('Please enter a valid name.');
+    try {
+      const res = await axios.post('http://localhost:3000/api/create', {
+        name: newUser,
+        totalPoints: 0,
+      });
 
-            setUsers([...users,res.data.newUser]);
-            setNewUser("");
-        }
-        catch(err){
-            console.log("Add user error",err);
-            if(err.response && err.response.status ===409){
-                alert("User with this name already Exist.");
-            }
-            else {
-                alert("Something went Wrong while adding user.")
-            }
-        }
+      setUsers([...users, res.data.newUser]);
+      setNewUser('');
+    } catch (err) {
+      console.error('Add user error', err);
+      if (err.response?.status === 409) {
+        alert('User with this name already exists.');
+      } else {
+        alert('Something went wrong while adding user.');
+      }
     }
+  };
 
+  return (
+    <div className="user-select-container">
+      <h2 className="title">👤 Select or Add User</h2>
 
-    return (
-        <>
-            <div>UserSelect</div>
-            <select name="" id="" value={selectedUser} onChange={(e) =>{ 
-                console.log("selected value" , e.target.value); setSelectedUser(e.target.value)}}>
-                <option value=""> -- Select a User --</option>
-                {users.map((user, _) => (
-                    <option key={user._id} value={user._id} > {user.name}</option>
-                ))}
-            </select>
+      <select
+        className="user-dropdown"
+        value={selectedUser}
+        onChange={(e) => setSelectedUser(e.target.value)}
+      >
+        <option value="">-- Select a User --</option>
+        {users.map((user) => (
+          <option key={user._id} value={user._id}>
+            {user.name}
+          </option>
+        ))}
+      </select>
 
-            <div className="Add-user">
-                <input type="text" value={newUser} onChange={ (e) =>setNewUser(e.target.value)} />
-                <button onClick={handleAddUser}>Add</button>
-            </div>
-        </>)
-}
+      <div className="add-user-section">
+        <input
+          type="text"
+          value={newUser}
+          placeholder="Enter new user name"
+          onChange={(e) => setNewUser(e.target.value)}
+        />
+        <button onClick={handleAddUser}>➕ Add User</button>
+      </div>
+    </div>
+  );
+};
 
-export default UserSelect
+export default UserSelect;
