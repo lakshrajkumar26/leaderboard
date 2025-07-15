@@ -1,10 +1,16 @@
 const Users = require("../models/UserModel");
-
+const {getIo} = require("./../Config/socketIo.config");
  //Register 
 const createUser = async(req,res)=>{
      const data = req.body;    
     try{
+         
         if(!data.name) { return res.status(400).json({message:"user not found"})};
+         
+        const existingUser = await Users.findOne({name : data.name});
+        if(existingUser) {return res.status(409).json({message :"User with name Already exist"});
+    }
+
           const newUser = await Users.create({
             name : data.name,
             totalPoints :data.totalPoints
