@@ -16,8 +16,11 @@ const ClaimHistorySchema = new mongoose.Schema({
         required:true,
         min : 1,
         max :10,
+    },
+    totalPoints: {
+    type: Number, 
+    required: true,
     }
-
 },{timestamps:true})
 
 const claimHistory = mongoose.model("claimHistorys",ClaimHistorySchema);

@@ -29,7 +29,7 @@ const Leaderboard = () => {
 
   return (
     <div>
-      <h3>🏆 Leaderboard</h3>
+      <h3> Leaderboard</h3>
       <table border="1" cellPadding="5">
         <thead>
           <tr>

@@ -53,6 +53,7 @@ const claimPoints = async (req,res) => {
 }
 //check history 
 // GET http://localhost:3000/api/claim/history/:userId
+
 const getClaimHistory = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -68,4 +69,28 @@ const getClaimHistory = async (req, res) => {
   }
 };
 
-module.exports = { claimPoints, getClaimHistory };
+const getPaginatedHistory = async (req,res) =>{
+    try{
+     const {userId} =req.params;
+
+     const page =parseInt(req.query.page) ||1;
+     const limit = parseInt(req.query.limit) ||10;
+     const skip =(page -1) * limit ;
+
+     const [history ,total] =await Promise.all([
+        claimHistory.find({userId}).sort({createdAt : -1}).skip(skip).limit(limit),
+        claimHistory.countDocuments({ userId })
+
+     ])
+
+    //   const history = await claimHistory.find({userId}).sort({createdAt : -1});
+      res.status(200).json({history,currentPage :page,totalPages : Math.ceil(total / limit), totalItems : total});
+    }
+    catch(err){
+       console.error("Error fetching claim history:", err);
+    res.status(500).json({ message: "Server error", err });
+    }
+}
+
+
+module.exports = { claimPoints, getClaimHistory ,getPaginatedHistory };

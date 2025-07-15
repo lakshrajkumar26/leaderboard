@@ -10,14 +10,15 @@ import ClaimHistory from './components/ClaimHistory'
 
 function App() {
   const [selectedUser, setSelectedUser] = useState("");
+   const [claimTrigger, setClaimTrigger] = useState(false) // for  refetch the historypage auto
 
   return (
   <>
   <Homepage/>
   <UserSelect selectedUser={selectedUser} setSelectedUser={setSelectedUser}/>
-  <ClaimButton selectedUser={selectedUser}/>
+  <ClaimButton selectedUser={selectedUser} onClaim={()=> setClaimTrigger( prev => !prev)}/>
   <Leaderboard/>
-  <ClaimHistory selectedUser={selectedUser}/>
+  <ClaimHistory selectedUser={selectedUser} claimTrigger={claimTrigger} />
   </>
   )
 }

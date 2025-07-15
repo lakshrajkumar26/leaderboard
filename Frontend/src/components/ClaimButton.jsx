@@ -1,33 +1,33 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useState } from 'react';
 import axios from "axios";
 
-const ClaimButton = ({ selectedUser }) => {
+const ClaimButton = ({ selectedUser, onClaim }) => {
+  const [lastClaim, setLastClaim] = useState(null);
 
-    const [lastClaim, setLastClaim] = useState(null);
+  const handleClaim = async () => {
+    if (!selectedUser) return alert("Please select a user first");
 
-   const handleClaim = () => {
-   if(!selectedUser) return alert("Please Select a user First");
-   
-   try{
-    const res = axios.post(`http://localhost:3000/api/claim/${selectedUser}`,);
-    setLastClaim(res.data);
-   }
-   catch (err){
-    console.log("error in claim Points",err)
-   }
-}
-    return(<>
-        <div>ClaimButton
-        <button onClick={handleClaim}>Claim Points</button>
-        {lastClaim && (
-            <p>
-                {lastClaim.user.username} claimed {lastClaim.pointsClaimed} points!
-            </p>
-        )}
-        </div>
-    </>
-    )
-}
+    try {
+      const res = await axios.post(`http://localhost:3000/api/claim/${selectedUser}`);
+      setLastClaim(res.data); // Save the response
+      if (onClaim) onClaim(); // Notify parent to refresh ClaimHistory
+    } catch (err) {
+      console.error("Error claiming points:", err);
+    }
+  };
 
-export default ClaimButton
+  return (
+    <div>
+      <h3> Claim Points</h3>
+      <button onClick={handleClaim}>Claim Points</button>
+
+      {lastClaim && (
+        <p>
+          <strong>{lastClaim.user.username}</strong> claimed <strong>{lastClaim.pointsClaimed}</strong> points!
+        </p>
+      )}
+    </div>
+  );
+};
+
+export default ClaimButton;
