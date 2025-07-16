@@ -1,5 +1,5 @@
 const express = require("express");
-const { claimPoints ,getClaimHistory ,getPaginatedHistory } = require("../controllers/claimhistoryController");
+const { claimPoints ,getClaimHistory ,getPaginatedHistory } = require("../controllers/ClaimHistoryController");
 
 const router = express.Router();
 

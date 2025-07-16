@@ -23,5 +23,5 @@ const ClaimHistorySchema = new mongoose.Schema({
     }
 },{timestamps:true})
 
-const claimHistory = mongoose.model("claimHistorys",ClaimHistorySchema);
+const claimHistory = mongoose.model("claimHistories",ClaimHistorySchema);
 module.exports = claimHistory;
