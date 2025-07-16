@@ -1,13 +1,15 @@
-/* Fresh Game-Themed Styling */
+/* Remove gradients and dark backgrounds from .history-wrapper, use transparent or inherit */
 .history-wrapper {
-  background: linear-gradient(to bottom right, #1e293b, #0f172a);
-  color: #f8fafc;
+  background: transparent;
+  color: #222;
   max-width: 700px;
   margin: 2rem auto;
   padding: 2rem;
   border-radius: 1.5rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: none;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .history-title {
@@ -20,7 +22,7 @@
 
 .history-empty {
   text-align: center;
-  color: #cbd5e1;
+  color: #9ca3af;
   font-size: 1rem;
 }
 
@@ -30,26 +32,37 @@
   max-height: 320px;
   overflow-y: auto;
   margin-bottom: 1rem;
+  padding-right: 0.5rem;
+  overflow-x: hidden;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .history-card {
-  background: #334155;
-  border: 1px solid #475569;
+  background: rgba(255,255,255,0.85);
+  border: 1.5px solid #e0e7ef;
   border-radius: 1rem;
   padding: 1rem;
   margin-bottom: 1rem;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
-
 .history-card:hover {
   transform: scale(1.02);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
 }
 
-.card-header {
+.card-header,
+.card-footer {
   display: flex;
   justify-content: space-between;
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .username {
@@ -58,7 +71,7 @@
 }
 
 .points {
-  color: #60a5fa;
+  color: #10b981;
   font-weight: bold;
 }
 
@@ -77,72 +90,43 @@
   justify-content: space-between;
   align-items: center;
   font-size: 0.95rem;
-  color: #f1f5f9;
+  color: #222;
 }
 
 .pagination button {
-  background-color: #3b82f6;
+  background-color: #38bdf8;
   color: white;
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 9999px;
   cursor: pointer;
   font-weight: 600;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s, transform 0.2s;
 }
-
 .pagination button:hover {
   background-color: #2563eb;
+  transform: translateY(-2px) scale(1.04);
 }
-
 .pagination button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
-/* Add these or update your existing styles */
 
-.history-wrapper {
-  background: linear-gradient(to bottom right, #1e293b, #0f172a);
-  color: #f8fafc;
-  max-width: 700px;
-  margin: 2rem auto;
-  padding: 2rem;
-  border-radius: 1.5rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow-x: hidden;  /* ✅ Prevent horizontal scroll */
-  box-sizing: border-box;
+/* Custom Scrollbar for Claim History */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #38bdf8 #222b44;
 }
-
-.history-list {
-  list-style: none;
-  padding: 0;
-  max-height: 320px;
-  overflow-y: auto;
-  margin-bottom: 1rem;
-  padding-right: 0.5rem;  /* ✅ Better spacing */
-  overflow-x: hidden;     /* ✅ Prevent horizontal scroll inside list */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+  background: #222b44;
+  border-radius: 8px;
 }
-
-.history-card {
-  background: #334155;
-  border: 1px solid #475569;
-  border-radius: 1rem;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  transition: transform 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  overflow-x: hidden;  /* ✅ Ensure card doesn’t break */
-  box-sizing: border-box;
-  word-wrap: break-word;
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #38bdf8;
+  border-radius: 8px;
+  border: 2px solid #222b44;
 }
-
-/* If you used flex layout in other divs like .card-header, set this: */
-.card-header,
-.card-footer {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;         /* ✅ Prevents overflow on small screens */
-  gap: 0.5rem;
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
 }

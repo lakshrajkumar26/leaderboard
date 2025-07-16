@@ -7,6 +7,7 @@ const db = require("./Config/db.config");
 const claimRouter = require("./routes/ClaimRouter");
 const port = 3000;
 const cors = require("cors");
+const path = require('path');
 
 app.use(cors({
     origin : "http://localhost:5173",
@@ -24,6 +25,15 @@ app.get("/health", (req,res)=>{
 })
 app.use("/api",userRouter);
 app.use("/api",claimRouter);
+
+// Serve static files from the React app (production build)
+const frontendDistPath = path.join(__dirname, '../Frontend/dist');
+app.use(express.static(frontendDistPath));
+
+// Fallback: send index.html for any non-API route
+app.get(/^\/(?!api).*/, (req, res) => {
+  res.sendFile(path.join(frontendDistPath, 'index.html'));
+});
 
 // app.listen(port, ()=>{
 //     console.log("server is running on ",port);

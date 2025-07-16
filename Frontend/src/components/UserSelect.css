@@ -1,11 +1,11 @@
 .user-select-container {
   max-width: 600px;
   margin: 30px auto;
-  background-color: #1e293b;
+  background: transparent;
   padding: 24px;
   border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  color: white;
+  box-shadow: none;
+  color: #222;
   text-align: center;
 }
 
@@ -19,11 +19,17 @@
   width: 80%;
   padding: 10px;
   border-radius: 8px;
-  border: none;
-  background-color: #374151;
-  color: white;
+  border: 1.5px solid #e0e7ef;
+  background: rgba(255,255,255,0.85);
+  color: #222;
   font-size: 1rem;
   margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: border 0.2s;
+}
+.user-dropdown:focus {
+  border: 1.5px solid #facc15;
+  outline: none;
 }
 
 .add-user-section {
@@ -36,11 +42,17 @@
 .add-user-section input {
   padding: 10px;
   border-radius: 8px;
-  border: none;
+  border: 1.5px solid #e0e7ef;
   width: 60%;
-  background-color: #334155;
-  color: white;
+  background: rgba(255,255,255,0.85);
+  color: #222;
   font-size: 0.95rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: border 0.2s;
+}
+.add-user-section input:focus {
+  border: 1.5px solid #facc15;
+  outline: none;
 }
 
 .add-user-section input::placeholder {
@@ -55,9 +67,10 @@
   color: white;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.3s, transform 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
-
 .add-user-section button:hover {
   background-color: #059669;
+  transform: translateY(-2px) scale(1.04);
 }

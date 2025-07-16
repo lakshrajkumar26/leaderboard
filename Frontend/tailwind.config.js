@@ -8,9 +8,4 @@ export default {
     extend: {},
   },
   plugins: [],
-  safelist: [
-  'animate-fadeIn',
-  'text-yellow-300', 'text-green-400', 'text-blue-400',
-  'bg-gray-800', 'border-blue-400', 'shadow'
-]
 }
