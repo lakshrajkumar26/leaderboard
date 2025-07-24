@@ -174,7 +174,7 @@ const Leaderboard = () => {
   };
 
   return (
-    <Card className="theme-card leaderboard-card" sx={{ maxWidth: 700, margin: '2.5rem auto', padding: '2.5rem 2rem', borderRadius: 6, boxShadow: '0 8px 32px rgba(0,0,0,0.28)' }}>
+    <Card className="leaderboard-card" sx={{ maxWidth: 700, margin: '2.5rem auto', padding: '2.5rem 2rem', borderRadius: 6, boxShadow: '0 8px 32px rgba(0,0,0,0.28)' }}>
       <motion.h2 className="leaderboard-heading" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, type: 'spring' }}>
         🏆 Top Champions
       </motion.h2>

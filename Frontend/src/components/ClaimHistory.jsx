@@ -41,7 +41,7 @@ const ClaimHistory = ({ selectedUser, claimTrigger }) => {
   };
 
   return (
-    <Card className="theme-card history-wrapper" sx={{ maxWidth: 700, margin: '2.5rem auto', padding: '2.5rem 2rem', borderRadius: 6, boxShadow: '0 8px 32px rgba(0,0,0,0.28)' }}>
+    <Card className="history-wrapper" sx={{ maxWidth: 700, margin: '2.5rem auto', padding: '2.5rem 2rem', borderRadius: 6, boxShadow: '0 8px 32px rgba(0,0,0,0.28)' }}>
       <motion.h2 className="history-title" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, type: 'spring' }} style={{ color: '#38bdf8', fontWeight: 800, fontSize: '2rem', marginBottom: 24 }}>
         <ReceiptLongIcon sx={{ color: '#38bdf8', mr: 1, fontSize: 32, verticalAlign: 'middle' }} />
         Claim History

@@ -22,7 +22,7 @@ const ClaimButton = ({ selectedUser, onClaim }) => {
   };
 
   return (
-    <Card className="theme-card claim-button-wrapper" sx={{ maxWidth: 700, margin: '2.5rem auto', padding: '2.5rem 2rem', borderRadius: 6, boxShadow: '0 8px 32px rgba(0,0,0,0.28)' }}>
+    <Card className="claim-button-wrapper" sx={{ maxWidth: 700, margin: '2.5rem auto', padding: '2.5rem 2rem', borderRadius: 6, boxShadow: '0 8px 32px rgba(0,0,0,0.28)' }}>
       <motion.h3 initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, type: 'spring' }} style={{ color: '#facc15', fontWeight: 700, fontSize: '1.5rem', marginBottom: 24 }}>
         <EmojiEventsIcon sx={{ color: '#facc15', mr: 1, fontSize: 32, verticalAlign: 'middle' }} />
         Claim Points

@@ -2,29 +2,40 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import Homepage from './components/HomePage'
+
 import UserSelect from './components/UserSelect'
 import ClaimButton from './components/ClaimButton'
 import Leaderboard from './components/Leaderboard'
 import ClaimHistory from './components/ClaimHistory'
-import bgVideo from './assets/background.mp4';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Home from './components/Home'
+import Navbar from './components/Navbar'
+import About from './components/About'
+
 
 function App() {
   const [selectedUser, setSelectedUser] = useState("");
-   const [claimTrigger, setClaimTrigger] = useState(false) // for  refetch the historypage auto
+  const [claimTrigger, setClaimTrigger] = useState(false) // for  refetch the historypage auto
 
   return (
-    <>
-      {/* Video background. To remove and use the image background instead, comment out or delete this <video> block. */}
+    <BrowserRouter>
+    <Navbar /> {/* ← Global navbar on all pages */}
+      
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/scoreboard' element={<Leaderboard />} />
+     <Route path='/claimbutton' element={<ClaimHistory/>} />
+     <Route path='/about' element={<About/>} />
      
-      <div className="container">
-  
-  <UserSelect selectedUser={selectedUser} setSelectedUser={setSelectedUser}/>
-  <ClaimButton selectedUser={selectedUser} onClaim={()=> setClaimTrigger( prev => !prev)}/>
-  <Leaderboard/>
-  <ClaimHistory selectedUser={selectedUser} claimTrigger={claimTrigger} />
-  </div>
-  </>
+
+      <Route path='/claimpoints' element={<>
+        <UserSelect selectedUser={selectedUser} setSelectedUser={setSelectedUser} />
+        <ClaimButton selectedUser={selectedUser} onClaim={() => setClaimTrigger(prev => !prev)} />
+        <Leaderboard />
+        <ClaimHistory selectedUser={selectedUser} claimTrigger={claimTrigger} />
+      </>} />
+ </Routes>
+    </BrowserRouter>
   )
 }
 
